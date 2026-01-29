@@ -1,0 +1,19 @@
+{
+  "name": "backend-project",
+  "version": "1.0.0",
+  "description": "this is a complete backend project ",
+  "keywords": [
+    "javascript",
+    "chai",
+    "aur",
+    "code",
+    "shariq"
+  ],
+  "license": "ISC",
+  "author": "shariq shakeel",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
