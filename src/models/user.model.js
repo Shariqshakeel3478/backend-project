@@ -63,7 +63,7 @@ userSchema.pre("save",async function(next){
 })  // arrow function use nahi karna. isme next pass kia hai kiu ke ye aik middleware hai
 // pre() aik hook hai jo chalta hai pehle . hame data "save" karne se pehle encryption karni hai is liye pre ka use kia hai 
 
-userSchema.methods.isPasswordCorrect = async function(password){
+userSchema.methods.isPasswordCorrect = async function(password){ //user schema me new method daal rahe hain
  return await bcrypt.compare(password,this.password)
 }
 

@@ -14,3 +14,13 @@ app.use(express.urlencoded({extended:true,limit:'16kb'})) // html form se jo dat
 app.use(express.static("public")) //"public" folder ke andar jo files hain, unko direct browser me access karne do.
 app.use(cookieParser()) // cookies ko read karne ke liye
 export {app}
+
+
+
+//routes import 
+
+import userRouter from './routes/user.routes.js'
+
+// routes decalaration
+
+app.use('/api/v1/user',userRouter) // route is tarah banega
