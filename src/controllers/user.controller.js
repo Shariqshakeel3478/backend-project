@@ -30,7 +30,7 @@ if(
 
 // check if user exist
 
-const existedUser = User.findOne({ // findone => sabse pehla 
+const existedUser =await User.findOne({ // findone => sabse pehla 
    $or:[{username},{email}] // username ya email match ho jae to 
 })
 
@@ -39,21 +39,32 @@ if(existedUser){
 }
 
 const avatarFilePath = req.files?.avatar[0]?.path;
-const coverImageFilePath = req.files?.coverImage[0]?.path;
+// const coverImageFilePath = req.files?.coverImage[0]?.path;
+
+
+let coverImageFilePath;
+
+if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length>0){
+   coverImageFilePath = req.files.coverImage[0].path
+}
+
 
 if(!avatarFilePath){
 throw new ApiError(400,"Avatar is required")
 }
 
+
 const avatar = await uploadOnCloudinary(avatarFilePath)
+
+
 const coverImage = await uploadOnCloudinary(coverImageFilePath)
 
 if(!avatar){
-   throw new ApiError(400,"Avatar no uploaded")
+   throw new ApiError(400,"Avatar not uploaded to cloudinary")
 }
 
 // upload user details on mongodb
- const user = await username.create({
+ const user = await User.create({
    fullName,
    avatar:avatar.url,
    coverImage:coverImage?.url || "",

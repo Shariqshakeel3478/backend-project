@@ -20,7 +20,7 @@ const userSchema =new Schema({
         trim:true
         
     },
-     fullname:{
+     fullName:{
         type:String,
         required:true,
         trim:true,
@@ -54,11 +54,11 @@ const userSchema =new Schema({
 {timestamps:true})
 
 
-userSchema.pre("save",async function(next){
+userSchema.pre("save",async function(){
     if(!this.isModified("password")) return next();
        
     this.password =await bcrypt.hash(this.password,10);
-    next()
+    
     
 })  // arrow function use nahi karna. isme next pass kia hai kiu ke ye aik middleware hai
 // pre() aik hook hai jo chalta hai pehle . hame data "save" karne se pehle encryption karni hai is liye pre ka use kia hai 
